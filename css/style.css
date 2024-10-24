@@ -1,1 +1,51 @@
-/* @import url('./reset.css'); */
+/* Import Section */
+
+@import url("");
+@import url("");
+
+/* End Import Section  */
+
+/* Fuentes y Colores a utilizar
+
+font-family: ';
+font-family: '; 
+color_principal: 
+color_secundario: 
+*/
+
+/* Variables Root 
+
+:root {
+  --fuente-principal: ;
+  --fuente-titulos: 
+  --colorprimario: 
+  --colorsecundario: 
+  --margin: 
+  --maxwidth: 
+  --fontsize: 
+}
+  */
+
+/* Scroll Animado */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos Globales */
+
+body {
+  font-family: var(--fuente-principal) !important;
+  font-size: var(--fontsize) !important;
+}
+
+.container {
+  max-width: var(--maxwidth);
+  margin: 0 auto;
+}
+
+img {
+  height: auto;
+  display: block;
+  width: 100%;
+}

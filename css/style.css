@@ -18,13 +18,13 @@ color_secundario:
 /* Variables Root  */
 
 :root {
-  /* --fuente-principal: ;
-  --fuente-titulos: */ 
-  --colorprimario: #6B8E23;
-  --colorsecundario: #F5F5DC;
-  --margin: 0.625rem;
-  /* --maxwidth:  */
-  --fontsize: 1rem;
+    /* --fuente-principal: ;
+  --fuente-titulos: */
+    --colorprimario: #6B8E23;
+    --colorsecundario: #F5F5DC;
+    --margin: 0.625rem;
+    --maxwidth: 80%;
+    --fontsize: 1rem;
 }
 
 * {
@@ -34,25 +34,37 @@ color_secundario:
 /* Scroll Animado */
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 /* Estilos Globales */
 
 body {
-  font-family: var(--fuente-principal);
-  font-size: var(--fontsize);
+    font-family: var(--fuente-principal);
+    font-size: var(--fontsize);
 }
 
 .container {
-  max-width: var(--maxwidth);
-  margin: 0 auto;
+    max-width: var(--maxwidth);
+    margin: 0 auto;
 }
 
 img {
-  height: auto;
-  display: block;
-  width: 100%;
+    height: auto;
+    display: block;
+    width: 100%;
+}
+
+/* Más estilos globales */
+
+button {
+
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
 }
 
 /* Estilos del header */
@@ -71,7 +83,7 @@ header {
         margin: var(--margin);
         color: var(--colorsecundario);
     }
-    
+
     #buscador {
         width: 35%;
         height: 1.875rem;
@@ -99,6 +111,168 @@ header {
         #cart {
             background-color: var(--colorsecundario);
             border: none;
+        }
+    }
+}
+
+/* Estilos del main */
+
+.escaparate {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+
+    article {
+        margin: 5px;
+        padding: 20px;
+        width: calc(50% - 10px);
+        border-top: 3px solid var(--colorprimario);
+        border-left: 3px solid var(--colorprimario);
+        box-shadow: 1px 1px 5px 1px;
+        border-radius: 10px;
+        text-align: center;
+        align-content: center;
+
+        &:hover {
+            transform: scale(105%);
+
+            .photo {
+                transition: 5s;
+                transform: scale(105%) rotate(3deg);
+            }
+        }
+
+        .photo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            background-color: grey;
+            border-radius: 50%;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 30px;
+        }
+
+        p {
+            margin: 20px 0;
+            line-height: 1.2rem;
+        }
+
+        button {
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            background-color: var(--colorprimario);
+            font-weight: 700;
+            color: var(--colorsecundario);
+
+            &:hover {
+                transform: scale(120%);
+            }
+        }
+    }
+}
+
+.paginas {
+    text-align: center;
+
+    button {
+        width: 100px;
+        height: 30px;
+        margin: 10px;
+        background-color: var(--colorsecundario);
+        color: var();
+
+        &:hover {
+            background-color: var(--colorprimario);
+            color: var(--colorsecundario);
+            font-weight: 700;
+        }
+    }
+}
+
+.carro {
+    width: 35%;
+    height: 100vh;
+    background-color: var(--colorsecundario);
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: none;
+    /* El menú permanece dehabilitado hasta que se pulse el carrito, cómenta el display para ver como queda */
+
+    aside {
+        margin-top: 80px;
+        padding: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        border-right: 2px solid var(--colorprimario);
+        border-bottom: 2px solid var(--colorprimario);
+        border-radius: 5px;
+    }
+
+    ul {
+
+
+        li {
+            width: 100%;
+            margin: 5px 0;
+
+            list-style: circle;
+            display: flex;
+            justify-content: space-between;
+
+            &:before {
+                content: '•';
+            }
+
+            p {
+                display: inline-block;
+                margin-right: auto;
+                margin-left: 5px;
+                flex-grow: 1;
+            }
+
+            button {
+                margin-left: 2px;
+            }
+
+            button:last-child {
+                background-color: rgb(224, 51, 51);
+            }
+        }
+    }
+
+    div {
+        margin-top: 20px;
+
+        p:nth-child(2) {
+            margin: 10px;
+            font-weight: 700;
+        }
+
+        button {
+            width: 100%;
+            height: 35px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: var(--colorprimario);
+            color: var(--colorsecundario);
+            font-size: 1.3rem;
+            font-weight: 700;
+
+            &:hover {
+                transform: scale(105%);
+            }
         }
     }
 }

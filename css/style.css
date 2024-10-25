@@ -23,7 +23,7 @@ color_secundario:
     --colorprimario: #6B8E23;
     --colorsecundario: #F5F5DC;
     --margin: 0.625rem;
-    --maxwidth: 80%;
+    --maxwidth: 90%;
     --fontsize: 1rem;
 }
 
@@ -85,16 +85,9 @@ header {
     }
 
     #buscador {
-        width: 35%;
+        width: 300px;
         height: 1.875rem;
         border-radius: 0.625rem;
-    }
-
-    #intro {
-        width: 8%;
-        height: 1.875rem;
-        border-radius: 0.625rem;
-        background-color: var(--colorsecundario);
     }
 
     .cart {
@@ -121,12 +114,13 @@ header {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+   
     margin-top: 10px;
 
     article {
-        margin: 5px;
+        margin: 10px;
         padding: 20px;
-        width: calc(50% - 10px);
+        width: 250px;
         border-top: 3px solid var(--colorprimario);
         border-left: 3px solid var(--colorprimario);
         box-shadow: 1px 1px 5px 1px;

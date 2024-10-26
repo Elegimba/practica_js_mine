@@ -22,6 +22,8 @@ function printOneArticle(articulo, dom) {
                     <li>Precio: ${articulo.precio}</li>`;
     btn.textContent = "Agregar al carrito";
 
+    btn.dataset.id = articulo.id
+
     // Meter los elementos dentro de sus contenedores
     figure.appendChild(img);
     article.append(figure, h3, ul, btn);
@@ -31,8 +33,8 @@ function printOneArticle(articulo, dom) {
 
 function printAllStock(stockList, dom) {
     stockList.forEach(articulo => printOneArticle(articulo, dom))
-    
-    
+
+
 }
 
 // Termina seccion de pintar productos
@@ -44,10 +46,10 @@ const botonCarrito = document.querySelector('#cart')
 
 const desplegarCarro = () => {
     const carro = document.querySelector('.carro');
-    
+
     /* carro.style.transform = 'translateX(-100%)' */
     /* carroBtn.setAttribute('style', 'transform: translateX(-800%)') */
-    if(carro.style.transform === "") {
+    if (carro.style.transform === "") {
         carro.setAttribute('style', 'transform: translateX(-100%)')
     } else {
         carro.style.transform = ""
@@ -56,3 +58,39 @@ const desplegarCarro = () => {
 
 botonCarrito.addEventListener('click', desplegarCarro)
 
+//agregar al carrito
+
+const btnAdd = document.querySelectorAll('article button')
+
+const printInCart = (articulo, dom) => {
+    const li = document.createElement('li');
+    const p = document.createElement('p');
+    const span = document.createElement('span');
+    const btn1 = document.createElement('button');
+    const btn2 = document.createElement('button');
+    const btn2i = document.createElement('i');
+
+    p.textContent = articulo.nombre;
+    span.textContent = ' x' + 1
+    btn1.textContent = '+'
+    btn2i.className = 'fa-solid fa-trash-can';
+
+    btn2.appendChild(btn2i)
+    p.appendChild(span)
+    li.append(p, btn1, btn2)
+    dom.appendChild(li)
+
+}
+
+const addToCart = (event) => {
+    const carro = document.querySelector('.items');
+    let id = event.target.dataset.id;
+    const articulo = productList.find(product => product.id === Number(id))
+    /* printInCart(articulo, carro) */
+    printInCart(articulo, carro);
+
+}
+
+btnAdd.forEach(button => {
+    button.addEventListener('click', addToCart);
+})

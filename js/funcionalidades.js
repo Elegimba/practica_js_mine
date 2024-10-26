@@ -38,3 +38,21 @@ function printAllStock(stockList, dom) {
 // Termina seccion de pintar productos
 
 console.log(printAllStock(productList, productSection));
+
+//desplegable carrito
+const botonCarrito = document.querySelector('#cart')
+
+const desplegarCarro = () => {
+    const carro = document.querySelector('.carro');
+    
+    /* carro.style.transform = 'translateX(-100%)' */
+    /* carroBtn.setAttribute('style', 'transform: translateX(-800%)') */
+    if(carro.style.transform === "") {
+        carro.setAttribute('style', 'transform: translateX(-100%)')
+    } else {
+        carro.style.transform = ""
+    }
+}
+
+botonCarrito.addEventListener('click', desplegarCarro)
+

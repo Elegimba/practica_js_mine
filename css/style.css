@@ -178,8 +178,6 @@ header {
   top: 0;
   right: -35%;
   transition: 0.5s;
-  
-  /* El menú permanece dehabilitado hasta que se pulse el carrito, cómenta el display para ver como queda */
 
   aside {
     margin-top: 5rem;
@@ -268,4 +266,11 @@ header {
         box-shadow: 0 0 0.1875rem 0.3125rem cyan;
       }
   }
+}
+
+/* Estilo de los botones cuando están deshabilitados */
+
+.escaparate button:disabled {
+  background-color: lightgrey;
+  color: red;
 }

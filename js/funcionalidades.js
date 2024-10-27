@@ -72,6 +72,7 @@ const addX1 = (span, stock, btn, btn1) => {
     } else {
         btn.disabled = true;
         btn1.disabled = true;
+        btn.textContent = 'Sin Stock'
         
     }
 }

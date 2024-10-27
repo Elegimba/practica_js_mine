@@ -59,39 +59,63 @@ const desplegarCarro = () => {
 
 botonCarrito.addEventListener('click', desplegarCarro)
 
+//Mostrar precio total
+
+const verTotal = document.querySelector('#total')
+
+const calcularTotal = (lista) => {
+    const articulosCarrito = document.querySelectorAll('.items li')
+    let total = 0;
+
+    articulosCarrito.forEach(articulo => {
+        const dataId = Number(articulo.dataset.id)
+        const articuloEnCarrito = lista.find(product => product.id === dataId)
+        const cantidad = Number(articulo.querySelector('span').textContent.replace(' x', ''))
+        total += articuloEnCarrito.precio * cantidad;
+    })
+    return total;
+
+}
+
+const mostrarTotal = () => {
+    verTotal.textContent = calcularTotal(productList)
+}
+
 //agregar al carrito
 
 const btnAdd = document.querySelectorAll('article button')
 
 const addX1 = (span, stock, btn, btn1) => {
     let contador = Number(span.textContent.replace(' x', ''))
-    if(stock > contador) {
+    if (stock > contador) {
         contador += 1;
         span.textContent = ' x' + contador;
     } else {
         btn.disabled = true;
         btn1.disabled = true;
         btn.textContent = 'Sin Stock'
-        
+
     }
+    mostrarTotal()
 }
 
 const deleteInCart = (event) => {
     /* liBorrar = event.target.parentNode;
     liBorrar.parentNode.removeChild(liBorrar) */
-    
+
     let liBorrar = event.target.parentNode;
 
-    while(liBorrar && liBorrar.tagName !== 'LI') {
+    while (liBorrar && liBorrar.tagName !== 'LI') {
         liBorrar = liBorrar.parentNode;
     }
-    if(liBorrar) {
+    if (liBorrar) {
         const btnAdd = document.querySelector(`#btnAdd${liBorrar.dataset.id}`)
         btnAdd.disabled = false;
         btnAdd.textContent = 'Agregar al carrito';
 
         liBorrar.parentNode.removeChild(liBorrar)
     }
+    mostrarTotal()
 }
 
 const printInCart = (articulo, dom) => {
@@ -142,13 +166,13 @@ const addToCart = (event) => {
         const btn = document.querySelector(`#btnAdd${articulo.id}`)
         const btn1 = añadido.querySelector(`#add${articulo.id}`)
         addX1(span, articulo.stock, btn, btn1)
-        
+
     } else {
         printInCart(articulo, carro);
         destacarCart(icono)
 
     }
-
+    mostrarTotal();
 
 
 }
@@ -157,9 +181,3 @@ btnAdd.forEach(button => {
     button.addEventListener('click', addToCart);
 })
 
-
-
-/* const verTotal = document.querySelector('#total')
-
-let calcularTotal = productList.reduce((acumulador, articulo) => acumulador + articulo.precio, 0)
-console.log(calcularTotal) */

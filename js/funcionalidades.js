@@ -101,6 +101,14 @@ const printInCart = (articulo, dom) => {
 
 }
 
+const destacarCart = (icono) => {
+    icono.classList.add('active')
+
+    setTimeout(() => {
+        icono.classList.remove('active')
+    }, 500)
+}
+
 
 
 const addToCart = (event) => {
@@ -108,6 +116,7 @@ const addToCart = (event) => {
     let id = event.target.dataset.id;
     const articulo = productList.find(product => product.id === Number(id))
     let añadido = document.querySelector(`.items li[data-id="${articulo.id}"]`);
+    const icono = document.querySelector('#cart')
 
     if (añadido) {
         const span = añadido.querySelector('span');
@@ -117,6 +126,7 @@ const addToCart = (event) => {
         
     } else {
         printInCart(articulo, carro);
+        destacarCart(icono)
 
     }
 

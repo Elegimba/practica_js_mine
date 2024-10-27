@@ -23,6 +23,7 @@ function printOneArticle(articulo, dom) {
     btn.textContent = "Agregar al carrito";
 
     btn.dataset.id = articulo.id
+    btn.id = 'btnAdd' + btn.dataset.id
 
     // Meter los elementos dentro de sus contenedores
     figure.appendChild(img);
@@ -62,17 +63,34 @@ botonCarrito.addEventListener('click', desplegarCarro)
 
 const btnAdd = document.querySelectorAll('article button')
 
+const addX1 = (span, stock, btn, btn1) => {
+    let contador = Number(span.textContent.replace(' x', ''))
+    if(stock > contador) {
+        contador += 1;
+        span.textContent = ' x' + contador;
+        console.log(contador)
+    } else {
+        btn.disabled = true;
+        btn1.disabled = true;
+        
+    }
+}
+
 const printInCart = (articulo, dom) => {
     const li = document.createElement('li');
-    const p = document.createElement('p');
+    li.dataset.id = articulo.id;
+    const p = document.createElement('p')
     const span = document.createElement('span');
     const btn1 = document.createElement('button');
+    btn1.id = 'add' + articulo.id
     const btn2 = document.createElement('button');
     const btn2i = document.createElement('i');
+    const btn = document.querySelector(`#btnAdd${articulo.id}`)
 
     p.textContent = articulo.nombre;
-    span.textContent = ' x' + 1
-    btn1.textContent = '+'
+    btn1.textContent = '+';
+    span.textContent = ' x' + 1;
+    btn1.addEventListener('click', () => addX1(span, articulo.stock, btn, btn1))
     btn2i.className = 'fa-solid fa-trash-can';
 
     btn2.appendChild(btn2i)
@@ -82,15 +100,36 @@ const printInCart = (articulo, dom) => {
 
 }
 
+
+
 const addToCart = (event) => {
     const carro = document.querySelector('.items');
     let id = event.target.dataset.id;
     const articulo = productList.find(product => product.id === Number(id))
-    /* printInCart(articulo, carro) */
-    printInCart(articulo, carro);
+    let añadido = document.querySelector(`.items li[data-id="${articulo.id}"]`);
+
+    if (añadido) {
+        const span = añadido.querySelector('span');
+        const btn = document.querySelector(`#btnAdd${articulo.id}`)
+        const btn1 = añadido.querySelector(`#add${articulo.id}`)
+        addX1(span, articulo.stock, btn, btn1)
+        
+    } else {
+        printInCart(articulo, carro);
+
+    }
+
+
 
 }
 
 btnAdd.forEach(button => {
     button.addEventListener('click', addToCart);
 })
+
+
+
+/* const verTotal = document.querySelector('#total')
+
+let calcularTotal = productList.reduce((acumulador, articulo) => acumulador + articulo.precio, 0)
+console.log(calcularTotal) */

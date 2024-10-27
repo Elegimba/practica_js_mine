@@ -229,7 +229,7 @@ header {
   div {
     margin-top: 1.25rem;
 
-    p:nth-child(2) {
+    #total {
       margin: 0.625rem;
       font-weight: 700;
     }

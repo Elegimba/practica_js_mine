@@ -68,12 +68,29 @@ const addX1 = (span, stock, btn, btn1) => {
     if(stock > contador) {
         contador += 1;
         span.textContent = ' x' + contador;
-        console.log(contador)
     } else {
         btn.disabled = true;
         btn1.disabled = true;
         btn.textContent = 'Sin Stock'
         
+    }
+}
+
+const deleteInCart = (event) => {
+    /* liBorrar = event.target.parentNode;
+    liBorrar.parentNode.removeChild(liBorrar) */
+    
+    let liBorrar = event.target.parentNode;
+
+    while(liBorrar && liBorrar.tagName !== 'LI') {
+        liBorrar = liBorrar.parentNode;
+    }
+    if(liBorrar) {
+        const btnAdd = document.querySelector(`#btnAdd${liBorrar.dataset.id}`)
+        btnAdd.disabled = false;
+        btnAdd.textContent = 'Agregar al carrito';
+
+        liBorrar.parentNode.removeChild(liBorrar)
     }
 }
 
@@ -85,6 +102,7 @@ const printInCart = (articulo, dom) => {
     const btn1 = document.createElement('button');
     btn1.id = 'add' + articulo.id
     const btn2 = document.createElement('button');
+    btn2.id = 'delete'
     const btn2i = document.createElement('i');
     const btn = document.querySelector(`#btnAdd${articulo.id}`)
 
@@ -92,6 +110,7 @@ const printInCart = (articulo, dom) => {
     btn1.textContent = '+';
     span.textContent = ' x' + 1;
     btn1.addEventListener('click', () => addX1(span, articulo.stock, btn, btn1))
+    btn2.addEventListener('click', deleteInCart)
     btn2i.className = 'fa-solid fa-trash-can';
 
     btn2.appendChild(btn2i)

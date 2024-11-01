@@ -55,6 +55,8 @@ function printAllStock(stockList, dom) {
 }
 
 const prevButton = document.querySelector('#previa');
+prevButton.disabled = true;
+prevButton.style.pointerEvents = "none";
 const nextButton = document.querySelector('#siguiente');
 const pagInfo = document.querySelector('#pag-info');
 
@@ -76,6 +78,11 @@ const avanzar = () => {
     if(pagActual < pagMax) {
         pagActual++
         paginaEscaparate(pagActual, productList)
+        prevButton.disabled = false;
+        prevButton.style.pointerEvents = "auto";
+    } if(pagActual >= pagMax) {
+        nextButton.disabled = true;
+        nextButton.style.pointerEvents = "none";
     }
 }
 
@@ -83,6 +90,12 @@ const retroceder = () => {
     if(pagActual > 1) {
         pagActual--
         paginaEscaparate(pagActual, productList)
+        nextButton.disabled = false;
+        nextButton.style.pointerEvents = "auto";
+    }
+    if (pagActual <= 1) {
+        prevButton.disabled = true;
+        prevButton.style.pointerEvents = "none";
     }
 }
 

@@ -5,17 +5,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
 @import url("");
 
-/* End Import Section  */
-
-/* Fuentes y Colores a utilizar
-
-font-family: ';
-font-family: '; 
-color_principal: 
-color_secundario: 
-*/
-
-/* Variables Root  */
 
 :root {
   /* --fuente-principal: ;
@@ -31,13 +20,9 @@ color_secundario:
   box-sizing: border-box;
 }
 
-/* Scroll Animado */
-
 html {
   scroll-behavior: smooth;
 }
-
-/* Estilos Globales */
 
 body {
   font-family: var(--fuente-principal);
@@ -55,8 +40,6 @@ img {
   width: 100%;
 }
 
-/* Más estilos globales */
-
 button {
   cursor: pointer;
 }
@@ -65,8 +48,6 @@ button:disabled {
   background-color: #ddd;
   cursor: not-allowed;
 }
-
-/* Estilos del header */
 
 header {
   width: 100%;
@@ -89,26 +70,25 @@ header {
   }
 }
 
-/* Estilos del main */
-
 .escaparate {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
   margin-top: 0.625rem;
-
+  
   article {
     margin: 0.625rem;
     padding: 1.25rem;
     width: 15.33rem;
+    height: 31.25rem;
     border-top: 0.1875rem solid var(--colorprimario);
     border-left: 0.1875rem solid var(--colorprimario);
     box-shadow: 0.0625rem 0.0625rem 0.3125rem 0.0625rem;
     border-radius: 0.625rem;
     text-align: center;
-    align-content: center;
+    position: relative;
+   
 
     &:hover {
       transform: scale(105%);
@@ -136,15 +116,25 @@ header {
     li {
       margin: 1.25rem 0;
       line-height: 1.2rem;
+
+      &:last-child {
+        font-weight: bold;
+        position: absolute;
+        bottom: 2.5rem;
+        left: 5.3125rem;
+      }
     }
 
     button {
       width: 9.375rem;
-      height: 1.875rem;
+      height: 2.5rem;
       border-radius: 0.625rem;
       background-color: var(--colorprimario);
       font-weight: 700;
       color: var(--colorsecundario);
+      position: absolute;
+      bottom: 0.625rem;
+      left: 2.9375rem;
 
       &:hover {
         transform: scale(120%);
@@ -267,8 +257,6 @@ header {
       }
   }
 }
-
-/* Estilo de los botones cuando están deshabilitados */
 
 .escaparate button:disabled {
   background-color: lightgrey;

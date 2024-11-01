@@ -1,12 +1,28 @@
-//Capturas de elementos del DOM
-
 const productSection = document.querySelector('.escaparate');
 
+const addToCart = (event) => {
+    const carro = document.querySelector('.items');
+    let id = event.target.dataset.id;
+    const articulo = productList.find(product => product.id === Number(id))
+    let añadido = document.querySelector(`.items li[data-id="${articulo.id}"]`);
+    const icono = document.querySelector('#cart')
 
+    if (añadido) {
+        const span = añadido.querySelector('span');
+        const btn = document.querySelector(`#btnAdd${articulo.id}`)
+        const btn1 = añadido.querySelector(`#add${articulo.id}`)
+        addX1(span, articulo.stock, btn, btn1)
 
-// Pintar productos en el Screen.
+    } else {
+        printInCart(articulo, carro);
+        destacarCart(icono)
+
+    }
+    mostrarTotal();
+}
+
 function printOneArticle(articulo, dom) {
-    // Creación de los elementos
+
     const article = document.createElement('article');
     const figure = document.createElement('figure');
     const img = document.createElement('img');
@@ -14,7 +30,6 @@ function printOneArticle(articulo, dom) {
     const ul = document.createElement('ul');
     const btn = document.createElement('button');
 
-    // Meter contenido y gestionar atributos
     img.src = articulo.imagen;
     img.alt = articulo.nombre;
     h3.textContent = articulo.nombre;
@@ -25,10 +40,11 @@ function printOneArticle(articulo, dom) {
     btn.dataset.id = articulo.id
     btn.id = 'btnAdd' + btn.dataset.id
 
-    // Meter los elementos dentro de sus contenedores
     figure.appendChild(img);
     article.append(figure, h3, ul, btn);
     dom.appendChild(article);
+
+    btn.addEventListener('click', addToCart)
 }
 
 
@@ -38,18 +54,50 @@ function printAllStock(stockList, dom) {
 
 }
 
-// Termina seccion de pintar productos
+const prevButton = document.querySelector('#previa');
+const nextButton = document.querySelector('#siguiente');
+const pagInfo = document.querySelector('#pag-info');
 
-console.log(printAllStock(productList, productSection));
+const articulosPag = 6;
+let pagActual = 1;
 
-//desplegable carrito
+
+const paginaEscaparate = (pag, lista) => {
+    const inicio = (pag - 1) * articulosPag;
+    const final = inicio + articulosPag;
+    const mostrados = lista.slice(inicio, final)
+    productSection.innerHTML = '';
+    printAllStock(mostrados, productSection)
+    pagInfo.textContent = `Página ${pagActual} de ${Math.ceil(lista.length / articulosPag)}`;
+}
+
+const avanzar = () => {
+    const pagMax = Math.ceil(productList.length / articulosPag)
+    if(pagActual < pagMax) {
+        pagActual++
+        paginaEscaparate(pagActual, productList)
+    }
+}
+
+const retroceder = () => {
+    if(pagActual > 1) {
+        pagActual--
+        paginaEscaparate(pagActual, productList)
+    }
+}
+
+prevButton.addEventListener('click', retroceder)
+nextButton.addEventListener('click', avanzar)
+
+paginaEscaparate(pagActual, productList)
+
+
+/* console.log(printAllStock(productList, productSection)); */
+
 const botonCarrito = document.querySelector('#cart')
 
 const desplegarCarro = () => {
     const carro = document.querySelector('.carro');
-
-    /* carro.style.transform = 'translateX(-100%)' */
-    /* carroBtn.setAttribute('style', 'transform: translateX(-800%)') */
     if (carro.style.transform === "") {
         carro.setAttribute('style', 'transform: translateX(-100%)')
     } else {
@@ -58,8 +106,6 @@ const desplegarCarro = () => {
 }
 
 botonCarrito.addEventListener('click', desplegarCarro)
-
-//Mostrar precio total
 
 const verTotal = document.querySelector('#total')
 
@@ -74,14 +120,11 @@ const calcularTotal = (lista) => {
         total += articuloEnCarrito.precio * cantidad;
     })
     return total;
-
 }
 
 const mostrarTotal = () => {
     verTotal.textContent = calcularTotal(productList)
 }
-
-//agregar al carrito
 
 const btnAdd = document.querySelectorAll('article button')
 
@@ -100,8 +143,6 @@ const addX1 = (span, stock, btn, btn1) => {
 }
 
 const deleteInCart = (event) => {
-    /* liBorrar = event.target.parentNode;
-    liBorrar.parentNode.removeChild(liBorrar) */
 
     let liBorrar = event.target.parentNode;
 
@@ -141,7 +182,6 @@ const printInCart = (articulo, dom) => {
     p.appendChild(span)
     li.append(p, btn1, btn2)
     dom.appendChild(li)
-
 }
 
 const destacarCart = (icono) => {
@@ -151,33 +191,3 @@ const destacarCart = (icono) => {
         icono.classList.remove('active')
     }, 500)
 }
-
-
-
-const addToCart = (event) => {
-    const carro = document.querySelector('.items');
-    let id = event.target.dataset.id;
-    const articulo = productList.find(product => product.id === Number(id))
-    let añadido = document.querySelector(`.items li[data-id="${articulo.id}"]`);
-    const icono = document.querySelector('#cart')
-
-    if (añadido) {
-        const span = añadido.querySelector('span');
-        const btn = document.querySelector(`#btnAdd${articulo.id}`)
-        const btn1 = añadido.querySelector(`#add${articulo.id}`)
-        addX1(span, articulo.stock, btn, btn1)
-
-    } else {
-        printInCart(articulo, carro);
-        destacarCart(icono)
-
-    }
-    mostrarTotal();
-
-
-}
-
-btnAdd.forEach(button => {
-    button.addEventListener('click', addToCart);
-})
-

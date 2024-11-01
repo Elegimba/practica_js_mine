@@ -91,8 +91,17 @@ nextButton.addEventListener('click', avanzar)
 
 paginaEscaparate(pagActual, productList)
 
+const buscador = document.querySelector('#buscador')
 
-/* console.log(printAllStock(productList, productSection)); */
+const pintarBusqueda = (event) => {
+    const busqueda = event.target.value
+    const resultadoBusqueda = productList.filter(articulo => articulo.nombre.toLowerCase().includes(busqueda.toLowerCase()))
+
+    productSection.innerHTML = '';
+    printAllStock(resultadoBusqueda, productSection)
+}
+
+buscador.addEventListener('input', pintarBusqueda)
 
 const botonCarrito = document.querySelector('#cart')
 
@@ -191,3 +200,4 @@ const destacarCart = (icono) => {
         icono.classList.remove('active')
     }, 500)
 }
+

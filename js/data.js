@@ -113,7 +113,7 @@ const productList = [
       },
       {
         id: 15,
-        nombre: "Corazón de María",
+        nombre: "Corazon de Maria",
         imagen: "https://www.planfor.es/Donnees_Site/Produit/Photo//dicentra%20spectabilis.jpg",
         descripcion: "Es común en jardines de sombra parcial o total y florece en primavera, ofreciendo un espectáculo visual delicado y llamativo.",
         precio: 36,
@@ -121,7 +121,7 @@ const productList = [
       },
       {
         id: 16,
-        nombre: "Corazón de María 'Alba'",
+        nombre: "Corazon de Maria 'Alba'",
         imagen: "https://www.planfor.fr//Donnees_Site/Produit/Photo//dicentra%20spectabilis%20alba.jpg" ,
         descripcion: "Es ideal para jardines sombreados y prospera en climas templados, siendo muy apreciada en paisajismo por su apariencia romántica y encantadora.",
         precio: 32,
@@ -129,7 +129,7 @@ const productList = [
       },
       {
         id: 17,
-        nombre: "Corazón de María dorado",
+        nombre: "Corazon de Maria dorado",
         imagen: "https://www.planfor.fr//Donnees_Site/Produit/Photo//Dicentra%20spectabilis%20Gold.jpg" ,
         descripcion: "Es ideal para jardines sombreados, ya que aporta color y contraste. Además, florece en primavera y verano.",
         precio: 41,
@@ -185,7 +185,7 @@ const productList = [
       },
       {
         id: 24,
-        nombre: "Hierba de San Cristóbal 'Atropurpurea'",
+        nombre: "Hierba de San Cristobal 'Atropurpurea'",
         imagen: "https://www.planfor.fr/Donnees_Site/Produit/Photo//Actaea%20simplex%20Atropurpurea.jpg" ,
         descripcion: "Esta planta prefiere suelos bien drenados y sombra parcial, lo que la hace ideal para interiores y jardines de sombra.",
         precio: 50,
